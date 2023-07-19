@@ -1,4 +1,4 @@
 const App = () => {
-  return <div className="text-4xl">hello world</div>;
+  return <div className="w-screen h-auto flex flex-col">Home Route</div>;
 };
 export default App;

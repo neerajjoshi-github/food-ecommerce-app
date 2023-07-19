@@ -10,5 +10,5 @@ body {
 }
 
 body {
-  font-family: "Rubik", sans-serif;
+  @apply font-rubik bg-primaryBg;
 }
