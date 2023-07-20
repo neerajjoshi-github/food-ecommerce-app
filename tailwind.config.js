@@ -4,6 +4,7 @@ export default {
   theme: {
     extend: {
       screens: {
+        xxs: "280px",
         xs: "375px",
       },
       backgroundColor: {
@@ -11,6 +12,7 @@ export default {
       },
       colors: {
         primary: "#ea5765",
+        primaryHover: "#d42a42",
         headingColor: "#2e2e2e",
         textColor: "#515151",
         cartNumBg: "#e80013",
