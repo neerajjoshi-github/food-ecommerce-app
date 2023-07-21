@@ -4,7 +4,7 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App.tsx";
 import HomePage from "./pages/HomePage.tsx";
-import CreateItemPage from "./pages/CreateItemPage.tsx";
+import AddItemPage from "./pages/AddItemPage.tsx";
 import { store } from "./store/store.ts";
 import { Provider } from "react-redux";
 
@@ -19,7 +19,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/addItem",
-        element: <CreateItemPage />,
+        element: <AddItemPage />,
       },
     ],
   },

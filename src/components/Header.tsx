@@ -99,7 +99,9 @@ const Header = () => {
           <div className="relative flex items-center justify-center">
             <BsBag className="cursor-pointer text-2xl text-textColor" />
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mt-[2px]">
-              <p className="text-sm font-semibold text-textColor">0</p>
+              <p className="text-sm font-semibold text-textColor select-none cursor-pointer">
+                0
+              </p>
             </div>
           </div>
           <div className="w-14 h-8 sm:w-20 sm:h-12 flex items-center justify-center">
