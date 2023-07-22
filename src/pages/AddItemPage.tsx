@@ -14,7 +14,7 @@ import { RxCross2 } from "react-icons/rx";
 import { motion } from "framer-motion";
 import { saveItem } from "../utils/firebaseFunctions";
 
-const categories = [
+export const categories = [
   "curry",
   "rice",
   "fruits",

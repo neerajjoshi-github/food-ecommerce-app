@@ -12,3 +12,13 @@ body {
 body {
   @apply font-rubik bg-primaryBg;
 }
+
+.scroll-bar-hidden {
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  scrollbar-width: none; /* for Firefox */
+  overflow-y: scroll;
+}
+
+.scroll-bar-hidden::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari, and Opera */
+}
