@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import ItemCard from "./ItemCard";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { Item } from "../store/slices/itemsSlice";
 
 interface ItemSliderProps {

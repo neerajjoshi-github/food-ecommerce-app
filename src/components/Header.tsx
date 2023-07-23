@@ -12,6 +12,7 @@ import { setUser } from "../store/slices/userSlice.ts";
 import { RootState } from "../store/store.ts";
 import { TbLogout } from "react-icons/tb";
 import { IoMdAdd } from "react-icons/io";
+import { toggleIsCartOpen } from "../store/slices/cartSlice.ts";
 
 const firebaseAuth = getAuth(app);
 const provider = new GoogleAuthProvider();
@@ -23,7 +24,7 @@ const navLinks = [
   },
   {
     title: "Menu",
-    href: "/",
+    href: "#menu",
   },
   {
     title: "Services",
@@ -38,6 +39,9 @@ const navLinks = [
 const Header = () => {
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.user.user);
+  const numOfCartItems = useSelector(
+    (state: RootState) => state.cart.numOfCartItems
+  );
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const login = async () => {
     try {
@@ -61,7 +65,7 @@ const Header = () => {
     dispatch(setUser(null));
   };
   return (
-    <header className="fixed top-0 left-0 z-50 w-full bg-primaryBg">
+    <header className="fixed top-0 left-0 z-50 w-full bg-primaryBg/60 border-b-2 border-gray-400 backdrop-blur-md">
       <div className="flex px-2 py-4 xs:p-4 md:px-16 md:py-6">
         <Link to="/" className="flex items-center gap-2">
           <img
@@ -91,16 +95,19 @@ const Header = () => {
                   key={link.title}
                   className="cursor-pointer font-semibold text-textColor hover:text-headingColor duration-100 transition-all ease-in-out"
                 >
-                  <Link to={link.href}>{link.title}</Link>
+                  <a href={link.href}>{link.title}</a>
                 </li>
               );
             })}
           </motion.ul>
-          <div className="relative flex items-center justify-center">
+          <div
+            onClick={() => dispatch(toggleIsCartOpen())}
+            className="relative flex items-center justify-center"
+          >
             <BsBag className="cursor-pointer text-2xl text-textColor" />
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mt-[2px]">
               <p className="text-sm font-semibold text-textColor select-none cursor-pointer">
-                0
+                {numOfCartItems}
               </p>
             </div>
           </div>

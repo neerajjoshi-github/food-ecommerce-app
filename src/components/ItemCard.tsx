@@ -1,11 +1,25 @@
 import { RiAddFill } from "react-icons/ri";
 import { motion } from "framer-motion";
 import { Item } from "../store/slices/itemsSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, removeFromCart } from "../store/slices/cartSlice";
+import { RootState } from "../store/store";
+
 interface ItemCardProps {
   item: Item;
 }
 
 const ItemCard = ({ item }: ItemCardProps) => {
+  const cartItems = useSelector((state: RootState) => state.cart.cartItems);
+  const dispath = useDispatch();
+
+  const toggleCartItem = () => {
+    if (cartItems.filter((cartItem) => cartItem.id === item.id).length > 0) {
+      dispath(removeFromCart(item.id));
+    } else {
+      dispath(addToCart({ ...item, qty: "1" }));
+    }
+  };
   return (
     <div className="min-w-[calc((100%-16px)/2)] sm:min-w-[calc((100%-32px)/3)] md:min-w-[calc((100%-48px)/4)] xl:min-w-[calc((100%-96px)/5)] group relative cursor-pointer h-full bg-gray-300/50 backdrop-blur-md rounded-md">
       <div className="w-full flex items-center justify-center p-2 border-b-2 border-primary">
@@ -30,11 +44,22 @@ const ItemCard = ({ item }: ItemCardProps) => {
         </div>
 
         <motion.button
+          onClick={toggleCartItem}
           whileTap={{ scale: 0.9 }}
           className="w-full sm:w-1/2 flex items-center justify-center gap-1 my-2 bg-primary hover:bg-primaryHover text-sm text-white pl-3 pr-2 py-1 rounded-md"
         >
-          <p className="text-sm">Add</p>
-          <RiAddFill className="text-lg" />
+          {cartItems.filter((cartItem) => cartItem.id === item.id).length >
+          0 ? (
+            <>
+              <p className="text-sm">Remove</p>
+              <RiAddFill className="text-lg rotate-45" />
+            </>
+          ) : (
+            <>
+              <p className="text-sm">Add</p>
+              <RiAddFill className="text-lg" />
+            </>
+          )}
         </motion.button>
       </div>
     </div>

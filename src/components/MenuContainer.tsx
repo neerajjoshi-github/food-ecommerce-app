@@ -2,16 +2,25 @@ import { BiDish } from "react-icons/bi";
 import { categories } from "../pages/AddItemPage";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
+import ItemCard from "./ItemCard";
+import NotFoundImage from "../assets/images/NotFound.svg";
 
 const MenuContainer = () => {
+  const items = useSelector((state: RootState) => state.items.items);
   const [inputCategory, setInputCategory] = useState<string>(categories[0]);
+  const filteredItems = items?.filter(
+    (item) => item.category === inputCategory
+  );
+  console.log(inputCategory, filteredItems);
   return (
-    <section className="my-6">
+    <section className="my-6" id="#menu">
       <h2 className="relative inline text-2xl font-semibold text-headingColor">
         Hot Dishes
         <span className="absolute -bottom-1 left-0 w-1/2 h-[2px] bg-primary" />
       </h2>
-      <div className="flex flex-wrap items-center justify-center gap-4 my-6">
+      <div className="flex flex-wrap items-center justify-center gap-4 my-8">
         {categories.map((category) => (
           <motion.label
             whileTap={{
@@ -21,12 +30,14 @@ const MenuContainer = () => {
             key={category}
             className={`${
               inputCategory === category && "bg-primary text-white"
-            } w-20 h-20 cursor-pointer rounded-md border border-gray-400 flex flex-col items-center justify-center gap-1`}
+            } w-20 h-20 shadow-md hover:shadow-lg cursor-pointer rounded-md border border-gray-400 flex flex-col items-center justify-center gap-1`}
           >
             <BiDish
               className={`${
-                inputCategory === category ? "text-white" : "text-primary"
-              } text-3xl`}
+                inputCategory === category
+                  ? "text-gray-500 bg-white"
+                  : "text-white bg-primary"
+              } text-[35px] rounded-full p-1`}
             />
             <p className="text-sm capitalize font-light">{category}</p>
             <input
@@ -40,8 +51,25 @@ const MenuContainer = () => {
           </motion.label>
         ))}
       </div>
+      {filteredItems && filteredItems?.length > 0 ? (
+        <div
+          id="menu-items"
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-6"
+        >
+          {filteredItems.map((filteredItem) => (
+            <ItemCard item={filteredItem} />
+          ))}
+        </div>
+      ) : (
+        <div className="flex flex-col items-center justify-center">
+          <img className="h-80" src={NotFoundImage} alt="Not found image!" />
+          <p className="text-2xl mt-4 font-semibold">No Result Found.....</p>
+        </div>
+      )}
     </section>
   );
 };
 
 export default MenuContainer;
+
+//

@@ -97,14 +97,11 @@ const AddItemPage = () => {
     });
   };
   return (
-    <div className="w-full flex justify-center items-center">
+    <div className="w-full flex justify-center items-center bg-[url(/bg-image1.svg)] ">
       <form
         onSubmit={onSubmit}
-        className="mb-2 w-[600px] border border-gray-400 rounded-md p-4 flex flex-col gap-4 shadow-xl"
+        className="z-10 bg-primaryBg/60 backdrop-blur-sm w-[600px] border border-gray-400 rounded-md p-4 flex flex-col gap-4 shadow-xl"
       >
-        <h1 className="text-3xl xs:text-4xl sm:text-5xl font-semibold my-1">
-          Add new items!
-        </h1>
         <div className="flex flex-col gap-2 relative">
           <label htmlFor="title" className="text-lg font-medium">
             Title

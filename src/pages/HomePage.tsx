@@ -111,8 +111,12 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-      {fruits && <ItemsSlider items={fruits} title="Fresh Fruits" />}
-      {rices && <ItemsSlider items={rices} title="Rice & Rice Products" />}
+      {fruits && fruits.length > 0 && (
+        <ItemsSlider items={fruits} title="Fresh Fruits" />
+      )}
+      {rices && rices?.length > 0 && (
+        <ItemsSlider items={rices} title="Rice & Rice Products" />
+      )}
       <MenuContainer />
     </>
   );
