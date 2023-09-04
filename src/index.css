@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;700;900&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -7,6 +7,7 @@
 html,
 body {
   scroll-behavior: smooth;
+  scroll-padding-top: 98px;
 }
 
 body {
@@ -21,4 +22,51 @@ body {
 
 .scroll-bar-hidden::-webkit-scrollbar {
   display: none; /* for Chrome, Safari, and Opera */
+}
+
+.text-gradient {
+  background-image: linear-gradient(
+    to right,
+    #ffa1a1,
+    #a8e4a0,
+    #a0c7ff,
+    #ffd79e,
+    #ffb2d3,
+    #9fcc92
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200%;
+  animation: gradient 5s infinite;
+}
+
+.sky-gradient {
+  background: linear-gradient(to bottom, #4a4969 0%, #7072ab 50%, #cd82a0 100%);
+}
+
+.container-padding {
+  @apply px-4 sm:px-6 md:px-8 xl:px-12;
+}
+
+.bg-text {
+  background: linear-gradient(45deg, #ea5765, white, transparent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200%;
+  animation: hue 10s infinite linear;
+
+  --stroke: min(0.25vmin, 3px) #ea5765;
+  color: white;
+  -webkit-text-stroke: var(--stroke);
+}
+
+@keyframes hue {
+  from {
+    -webkit-filter: hue-rotate(0deg);
+  }
+  to {
+    -webkit-filter: hue-rotate(-360deg);
+  }
 }

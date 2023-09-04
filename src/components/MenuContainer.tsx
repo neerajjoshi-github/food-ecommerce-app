@@ -6,16 +6,15 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import ItemCard from "./ItemCard";
 import NotFoundImage from "../assets/images/NotFound.svg";
-
 const MenuContainer = () => {
   const items = useSelector((state: RootState) => state.items.items);
   const [inputCategory, setInputCategory] = useState<string>(categories[0]);
   const filteredItems = items?.filter(
     (item) => item.category === inputCategory
   );
-  console.log(inputCategory, filteredItems);
+
   return (
-    <section className="my-6" id="#menu">
+    <section className="my-6 container-padding" id="menu">
       <h2 className="relative inline text-2xl font-semibold text-headingColor">
         Hot Dishes
         <span className="absolute -bottom-1 left-0 w-1/2 h-[2px] bg-primary" />

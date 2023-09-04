@@ -1,9 +1,10 @@
 import { RiAddFill } from "react-icons/ri";
-import { motion } from "framer-motion";
 import { Item } from "../store/slices/itemsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, removeFromCart } from "../store/slices/cartSlice";
 import { RootState } from "../store/store";
+import { Link } from "react-router-dom";
+import Button from "./Button";
 
 interface ItemCardProps {
   item: Item;
@@ -13,15 +14,26 @@ const ItemCard = ({ item }: ItemCardProps) => {
   const cartItems = useSelector((state: RootState) => state.cart.cartItems);
   const dispath = useDispatch();
 
-  const toggleCartItem = () => {
-    if (cartItems.filter((cartItem) => cartItem.id === item.id).length > 0) {
+  const isCartItem =
+    cartItems.filter((cartItem) => cartItem.id === item?.id).length > 0;
+
+  const toggleCartItem = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.stopPropagation();
+    e.preventDefault();
+    if (isCartItem) {
       dispath(removeFromCart(item.id));
     } else {
       dispath(addToCart({ ...item, qty: "1" }));
     }
   };
+
   return (
-    <div className="min-w-[calc((100%-16px)/2)] sm:min-w-[calc((100%-32px)/3)] md:min-w-[calc((100%-48px)/4)] xl:min-w-[calc((100%-96px)/5)] group relative cursor-pointer h-full bg-gray-300/50 backdrop-blur-md rounded-md">
+    <Link
+      to={`/item/${item.databaseId}`}
+      className="min-w-[calc((100%-16px)/2)] sm:min-w-[calc((100%-32px)/3)] md:min-w-[calc((100%-48px)/4)] xl:min-w-[calc((100%-96px)/5)] group relative cursor-pointer h-full bg-gray-300/50 backdrop-blur-md rounded-md"
+    >
       <div className="w-full flex items-center justify-center p-2 border-b-2 border-primary">
         <img
           className="h-40 group-hover:scale-110 transition duration-500 object-contain"
@@ -43,13 +55,12 @@ const ItemCard = ({ item }: ItemCardProps) => {
           </p>
         </div>
 
-        <motion.button
+        <Button
           onClick={toggleCartItem}
-          whileTap={{ scale: 0.9 }}
-          className="w-full sm:w-1/2 flex items-center justify-center gap-1 my-2 bg-primary hover:bg-primaryHover text-sm text-white pl-3 pr-2 py-1 rounded-md"
+          className="w-full sm:w-1/2 my-2"
+          size={"sm"}
         >
-          {cartItems.filter((cartItem) => cartItem.id === item.id).length >
-          0 ? (
+          {isCartItem ? (
             <>
               <p className="text-sm">Remove</p>
               <RiAddFill className="text-lg rotate-45" />
@@ -60,9 +71,9 @@ const ItemCard = ({ item }: ItemCardProps) => {
               <RiAddFill className="text-lg" />
             </>
           )}
-        </motion.button>
+        </Button>
       </div>
-    </div>
+    </Link>
   );
 };
 

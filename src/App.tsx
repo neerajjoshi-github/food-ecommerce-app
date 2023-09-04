@@ -23,7 +23,7 @@ const App = () => {
   return (
     <div className="w-full h-auto flex flex-col">
       <Header />
-      <main className="mt-24 md:mt-28 px-4 sm:px-6 md:px-8 xl:px-12 w-full">
+      <main className="mt-24 md:mt-28 w-full">
         <Outlet />
       </main>
       <AnimatePresence>{isCartOpen && <Cart />}</AnimatePresence>

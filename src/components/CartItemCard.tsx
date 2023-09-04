@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { CartItem } from "../store/slices/cartSlice";
 import { removeFromCart, updateQuantity } from "../store/slices/cartSlice";
 import { useDispatch } from "react-redux";
+import Button from "./Button";
 
 const quantityOption = [
   { value: "1", label: "1" },
@@ -23,7 +24,7 @@ const CartItemCard = ({ cartItem }: CartItemProps) => {
       <div className="flex items-center gap-4 ">
         <div className="w-24 h-24">
           <img
-            className="w-full object-contain"
+            className="w-full h-full object-contain"
             src={cartItem.imageUrl}
             alt={cartItem.title}
           />
@@ -37,13 +38,12 @@ const CartItemCard = ({ cartItem }: CartItemProps) => {
         </div>
       </div>
       <div className="grid grid-cols-3 gap-2 border-t border-primary py-2">
-        <motion.button
-          whileTap={{ scale: 0.9 }}
-          className="py-1 px-3 bg-slate-600 text-white rounded-md text-sm"
+        <Button
+          variant="muted"
           onClick={() => dispatch(removeFromCart(cartItem.id))}
         >
           Remove
-        </motion.button>
+        </Button>
 
         <Select
           onChange={(e) =>
@@ -68,12 +68,7 @@ const CartItemCard = ({ cartItem }: CartItemProps) => {
           defaultValue={quantityOption[0]}
         />
 
-        <motion.button
-          whileTap={{ scale: 0.9 }}
-          className="py-1 px-3 bg-primary text-white rounded-md text-sm"
-        >
-          Buy Now
-        </motion.button>
+        <Button disabled>Buy Now</Button>
       </div>
     </div>
   );

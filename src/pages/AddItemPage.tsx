@@ -15,9 +15,9 @@ import { motion } from "framer-motion";
 import { saveItem } from "../utils/firebaseFunctions";
 
 export const categories = [
+  "fruits",
   "curry",
   "rice",
-  "fruits",
   "vegetables",
   "snaks",
   "icecreams",
@@ -97,10 +97,10 @@ const AddItemPage = () => {
     });
   };
   return (
-    <div className="w-full flex justify-center items-center bg-[url(/bg-image1.svg)] ">
+    <div className="w-full flex justify-center items-center bg-contain bg-no-repeat bg-[url('/images/raspberry.png')]">
       <form
         onSubmit={onSubmit}
-        className="z-10 bg-primaryBg/60 backdrop-blur-sm w-[600px] border border-gray-400 rounded-md p-4 flex flex-col gap-4 shadow-xl"
+        className="z-10 backdrop-blur-lg w-[600px] border border-gray-400 rounded-md p-4 flex flex-col gap-4 shadow-xl"
       >
         <div className="flex flex-col gap-2 relative">
           <label htmlFor="title" className="text-lg font-medium">

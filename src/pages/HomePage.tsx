@@ -1,5 +1,5 @@
 import DeliveryImage from "../assets/images/Delivery.png";
-import { motion } from "framer-motion";
+
 import HeroBackground from "../assets/images/heroBg.png";
 import IcecreameImage from "../assets/images/i1.png";
 import FruitImage from "../assets/images/f4.png";
@@ -9,6 +9,10 @@ import ItemsSlider from "../components/ItemsSlider";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import MenuContainer from "../components/MenuContainer";
+import ServicesContainer from "../components/ServicesContainer";
+import AboutContainer from "../components/AboutContainer";
+import Button from "../components/Button";
+import JoinContainer from "../components/JoinContainer";
 
 const heroData = [
   {
@@ -48,7 +52,10 @@ const HomePage = () => {
   const rices = items?.filter((item) => item.category === "rice");
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-4">
+      <div
+        id="hero"
+        className="container-padding grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-4"
+      >
         <div className="flex flex-col items-start  justify-center gap-4 md:gap-6">
           <div className="flex items-center gap-3 bg-primary p-2 rounded-full">
             <p className="text-lg font-base text-white">Fastest Delivery</p>
@@ -60,7 +67,7 @@ const HomePage = () => {
               />
             </div>
           </div>
-          <p className="text-5xl md:text-7xl xl:text-8xl font-black tracking-wide text-headingColor">
+          <p className="text-5xl md:text-7xl xl:text-8xl font-bold tracking-wide text-headingColor">
             Get Your Products in <span className="text-primary">Minutes.</span>
           </p>
           <p className="font-medium text-base xl:text-lg">
@@ -71,14 +78,10 @@ const HomePage = () => {
             fruits, vegetables, meat, ice creams, and cold drinks right to your
             doorstep.
           </p>
-          <motion.button
-            whileTap={{
-              scale: 0.95,
-            }}
-            className="bg-primary w-full xl:w-[500px] px-5 py-4 text-white font-semibold tracking-wide rounded-md hover:shadow-lg hover:bg-primaryHover"
-          >
+
+          <Button className="w-full xl:w-[500px]" size={"lg"}>
             Order Now
-          </motion.button>
+          </Button>
         </div>
         <div className="relative">
           <img
@@ -111,13 +114,18 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-      {fruits && fruits.length > 0 && (
-        <ItemsSlider items={fruits} title="Fresh Fruits" />
-      )}
-      {rices && rices?.length > 0 && (
-        <ItemsSlider items={rices} title="Rice & Rice Products" />
-      )}
+      <div className="container-padding">
+        {fruits && fruits.length > 0 && (
+          <ItemsSlider items={fruits} title="Fresh Fruits" />
+        )}
+        {rices && rices?.length > 0 && (
+          <ItemsSlider items={rices} title="Rice & Rice Products" />
+        )}
+      </div>
       <MenuContainer />
+      <ServicesContainer />
+      <AboutContainer />
+      <JoinContainer />
     </>
   );
 };

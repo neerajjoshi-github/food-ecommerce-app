@@ -15,6 +15,7 @@ export default {
       },
       colors: {
         primary: "#ea5765",
+        secondary: "#65ea57",
         primaryLight: "#f7aaad",
         primaryHover: "#d42a42",
         headingColor: "#2e2e2e",

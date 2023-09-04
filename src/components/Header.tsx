@@ -13,6 +13,9 @@ import { RootState } from "../store/store.ts";
 import { TbLogout } from "react-icons/tb";
 import { IoMdAdd } from "react-icons/io";
 import { toggleIsCartOpen } from "../store/slices/cartSlice.ts";
+import { NavHashLink } from "react-router-hash-link";
+import Button from "./Button.tsx";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 const firebaseAuth = getAuth(app);
 const provider = new GoogleAuthProvider();
@@ -20,19 +23,19 @@ const provider = new GoogleAuthProvider();
 const navLinks = [
   {
     title: "Home",
-    href: "/",
+    href: "/#top",
   },
   {
     title: "Menu",
-    href: "#menu",
+    href: "/#menu",
   },
   {
     title: "Services",
-    href: "/",
+    href: "/#services",
   },
   {
     title: "About",
-    href: "/",
+    href: "/#about",
   },
 ];
 
@@ -43,6 +46,7 @@ const Header = () => {
     (state: RootState) => state.cart.numOfCartItems
   );
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const login = async () => {
     try {
       const {
@@ -64,9 +68,50 @@ const Header = () => {
     localStorage.clear();
     dispatch(setUser(null));
   };
+
   return (
     <header className="fixed top-0 left-0 z-50 w-full bg-primaryBg/60 border-b-2 border-gray-400 backdrop-blur-md">
       <div className="flex px-2 py-4 xs:p-4 md:px-16 md:py-6">
+        <Button
+          variant="ghost"
+          className="flex md:hidden py-1 px-2 mx-1 rounded-md hover:bg-slate-400"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          <GiHamburgerMenu size={20} />
+        </Button>
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{
+                scale: 0.6,
+                opacity: 0,
+              }}
+              animate={{
+                scale: 1,
+                opacity: 1,
+              }}
+              exit={{
+                scale: 0.6,
+                opacity: 0,
+              }}
+              className="absolute left-2 md:-left-8 top-20 flex flex-col w-40 bg-primaryBg border-gray-600 border rounded-lg shadow-xl py-2"
+            >
+              <ul className="flex md:hidden flex-col items-center">
+                {navLinks.map((link) => {
+                  return (
+                    <li
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      key={link.title}
+                      className="border-b border-gray-600 cursor-pointer py-2 font-semibold text-textColor hover:text-headingColor duration-100 transition-all ease-in-out"
+                    >
+                      <NavHashLink to={link.href}>{link.title}</NavHashLink>
+                    </li>
+                  );
+                })}
+              </ul>
+            </motion.div>
+          )}
+        </AnimatePresence>
         <Link to="/" className="flex items-center gap-2">
           <img
             src={Logo}
@@ -95,7 +140,7 @@ const Header = () => {
                   key={link.title}
                   className="cursor-pointer font-semibold text-textColor hover:text-headingColor duration-100 transition-all ease-in-out"
                 >
-                  <a href={link.href}>{link.title}</a>
+                  <NavHashLink to={link.href}>{link.title}</NavHashLink>
                 </li>
               );
             })}
@@ -146,18 +191,6 @@ const Header = () => {
                       }}
                       className="absolute right-0 md:-right-8 top-16 flex flex-col w-40 bg-primaryBg border-gray-600 border rounded-lg shadow-xl py-2"
                     >
-                      <ul className="flex md:hidden flex-col">
-                        {navLinks.map((link) => {
-                          return (
-                            <li
-                              key={link.title}
-                              className="cursor-pointer flex justify-between px-6 py-2 gap-2 border-b border-gray-600 items-center hover:bg-primary hover:text-white transition"
-                            >
-                              <Link to={link.href}>{link.title}</Link>
-                            </li>
-                          );
-                        })}
-                      </ul>
                       <div className="cursor-pointer flex justify-between px-6 py-2 gap-2 items-center hover:bg-primary hover:text-white transition">
                         <p>Account</p>
                         <BiSolidUserCircle className="text-[1.35rem]" />

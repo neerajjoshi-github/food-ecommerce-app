@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
+import Button from "./Button";
 
 const CartTotal = () => {
   const totalPrice = useSelector((state: RootState) => state.cart.cartTotal);
@@ -27,9 +28,9 @@ const CartTotal = () => {
         <p className="text-lg font-semibold">Total</p>
         <p className="text-lg font-semibold">$ {totalPrice}</p>
       </div>
-      <button className="w-full py-2 bg-primary text-white rounded-md text-sm">
+      <Button disabled className="w-full">
         Proceed
-      </button>
+      </Button>
     </div>
   );
 };

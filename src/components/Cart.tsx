@@ -6,6 +6,7 @@ import NotFoundImage from "../assets/images/NotFound.svg";
 import { RootState } from "../store/store";
 import CartItemCard from "./CartItemCard";
 import CartTotal from "./CartTotal";
+import Button from "./Button";
 
 const Cart = () => {
   const cartItems = useSelector((state: RootState) => state.cart.cartItems);
@@ -33,15 +34,14 @@ const Cart = () => {
         />
 
         <h3 className="text-lg">Cart</h3>
-        <motion.button
-          whileTap={{
-            scale: 0.9,
-          }}
+        <Button
+          variant="muted"
+          size="sm"
           onClick={() => dispatch(clearCart())}
-          className="bg-gray-400/50 py-1 px-2 rounded-xl text-sm"
+          className="rounded-xl px-2"
         >
           Clear
-        </motion.button>
+        </Button>
       </div>
 
       {cartItems.length > 0 ? (

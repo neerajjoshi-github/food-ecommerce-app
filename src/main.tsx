@@ -7,6 +7,7 @@ import HomePage from "./pages/HomePage.tsx";
 import AddItemPage from "./pages/AddItemPage.tsx";
 import { store } from "./store/store.ts";
 import { Provider } from "react-redux";
+import ItemPage from "./pages/ItemPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: "/addItem",
         element: <AddItemPage />,
+      },
+      {
+        path: "/item/:itemId",
+        element: <ItemPage />,
       },
     ],
   },
