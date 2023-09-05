@@ -7,7 +7,21 @@
 html,
 body {
   scroll-behavior: smooth;
-  scroll-padding-top: 98px;
+  scroll-padding-top: 64px;
+}
+
+@media (min-width: 640px) {
+  html,
+  body {
+    scroll-padding-top: 80px;
+  }
+}
+
+@media (min-width: 768px) {
+  html,
+  body {
+    scroll-padding-top: 96px;
+  }
 }
 
 body {
