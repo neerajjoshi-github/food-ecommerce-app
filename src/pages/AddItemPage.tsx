@@ -49,7 +49,7 @@ const AddItemPage = () => {
   } = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
   });
-  console.log(errors.calories?.message, isLoading);
+
   const onSubmit = handleSubmit(async (data) => {
     try {
       const itemData = { id: crypto.randomUUID(), ...data };
@@ -97,7 +97,7 @@ const AddItemPage = () => {
     });
   };
   return (
-    <div className="w-full flex justify-center items-center bg-contain bg-no-repeat bg-[url('/images/raspberry.png')]">
+    <div className="w-full flex justify-center items-center bg-contain bg-no-repeat bg-[url('/images/add-item-bg.png')]">
       <form
         onSubmit={onSubmit}
         className="z-10 backdrop-blur-lg w-[600px] border border-gray-400 rounded-md p-4 flex flex-col gap-4 shadow-xl"

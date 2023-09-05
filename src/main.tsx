@@ -8,6 +8,7 @@ import AddItemPage from "./pages/AddItemPage.tsx";
 import { store } from "./store/store.ts";
 import { Provider } from "react-redux";
 import ItemPage from "./pages/ItemPage.tsx";
+import Error from "./components/Error.tsx";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,7 @@ const router = createBrowserRouter([
         element: <ItemPage />,
       },
     ],
+    errorElement: <Error />,
   },
 ]);
 

@@ -8,9 +8,9 @@ import { BsFillLightningChargeFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import { addToCart, removeFromCart } from "../store/slices/cartSlice";
-import ItemsSlider from "../components/ItemsSlider";
+import ItemsSlider from "../components/reusables/ItemsSlider";
 import { Skeleton } from "../components/Skeleton";
-import Button from "../components/Button";
+import Button from "../components/reusables/Button";
 
 const ItemPage = () => {
   const params = useParams() as { itemId: string };

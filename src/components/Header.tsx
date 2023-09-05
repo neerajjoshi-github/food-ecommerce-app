@@ -1,6 +1,4 @@
 import { useState } from "react";
-import Logo from "../assets/images/logo.png";
-import ProfileImage from "../assets/images/profile-image.png";
 import { BsBag } from "react-icons/bs";
 import { BiMenuAltLeft, BiSolidUserCircle } from "react-icons/bi";
 import { motion, AnimatePresence } from "framer-motion";
@@ -14,7 +12,7 @@ import { TbLogout } from "react-icons/tb";
 import { IoMdAdd } from "react-icons/io";
 import { toggleIsCartOpen } from "../store/slices/cartSlice.ts";
 import { NavHashLink } from "react-router-hash-link";
-import Button from "./Button.tsx";
+import Button from "./reusables/Button.tsx";
 import { GiHamburgerMenu } from "react-icons/gi";
 
 const firebaseAuth = getAuth(app);
@@ -114,7 +112,7 @@ const Header = () => {
         </AnimatePresence>
         <Link to="/" className="flex items-center gap-2">
           <img
-            src={Logo}
+            src="/images/logo.png"
             className="w-7 md:w-10 object-cover"
             alt="Logo Image"
           />
@@ -169,7 +167,11 @@ const Header = () => {
                   <BiMenuAltLeft className="text-xl sm:text-2xl" />
                   <img
                     className="w-5 sm:w-7 h-auto rounded-full object-cover"
-                    src={user.photoURL ? user.photoURL : ProfileImage}
+                    src={
+                      user.photoURL
+                        ? user.photoURL
+                        : "/images/profile-image.png"
+                    }
                     alt="Profile Image"
                   />
                 </motion.div>

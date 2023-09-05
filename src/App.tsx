@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setItems } from "./store/slices/itemsSlice";
 import { Item } from "./store/slices/itemsSlice";
-import Cart from "./components/Cart";
+import Cart from "./components/cart/Cart";
 import { RootState } from "./store/store";
 import { AnimatePresence } from "framer-motion";
 
