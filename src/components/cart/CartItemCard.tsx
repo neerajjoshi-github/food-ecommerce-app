@@ -1,5 +1,4 @@
 import Select from "react-select";
-import { motion } from "framer-motion";
 import { CartItem } from "../../store/slices/cartSlice";
 import { removeFromCart, updateQuantity } from "../../store/slices/cartSlice";
 import { useDispatch } from "react-redux";

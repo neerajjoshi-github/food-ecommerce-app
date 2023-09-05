@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { getItemWithId } from "../utils/firebaseFunctions";
 import { Item } from "../store/slices/itemsSlice";
 import { AiFillTag } from "react-icons/ai";
-import { motion } from "framer-motion";
 import { BsFillLightningChargeFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store";

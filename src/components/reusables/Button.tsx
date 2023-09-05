@@ -1,4 +1,4 @@
-import React, { AnimationEvent, ButtonHTMLAttributes } from "react";
+import React, { ButtonHTMLAttributes } from "react";
 import { cn } from "../../utils/tailwindFunction";
 import { motion, MotionProps } from "framer-motion";
 

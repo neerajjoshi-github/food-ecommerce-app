@@ -43,7 +43,7 @@ const AddItemPage = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isLoading, isSubmitting },
+    formState: { errors, isSubmitting },
     control,
     reset,
   } = useForm<FormSchemaType>({
