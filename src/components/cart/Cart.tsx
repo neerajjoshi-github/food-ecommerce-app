@@ -50,8 +50,8 @@ const Cart = () => {
           ))}
         </div>
       ) : (
-        <div className="w-full h-full mt-2 flex flex-col items-center justify-center gap-4 bg-gray-300/50 px-1 pb-24">
-          <img src="/images/not-found.svg" alt="Not found image" />
+        <div className="w-full h-full mt-2 flex flex-col items-center justify-center gap-4 bg-gray-300/50 px-4 pb-24">
+          <img src="/images/1.png" alt="Not found image" />
           <p className="text-lg">Your cart is empty.</p>
         </div>
       )}

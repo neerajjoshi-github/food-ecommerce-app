@@ -21,7 +21,7 @@ const App = () => {
     fetchItems();
   }, []);
   return (
-    <div className="w-full h-auto flex flex-col">
+    <div className="w-full h-auto flex flex-col ">
       <Header />
       <main className="mt-24 md:mt-28 w-full">
         <Outlet />

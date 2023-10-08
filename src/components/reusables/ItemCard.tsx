@@ -42,7 +42,7 @@ const ItemCard = ({ item }: ItemCardProps) => {
         />
       </div>
       <div className="flex flex-col gap-[2px] px-2 sm:px-3">
-        <p className="text-sm xs:text-base sm:text-lg truncate mt-[6px] mb-[4px] text-textColor font-semibold">
+        <p className="text-sm xs:text-base capitalize sm:text-lg truncate mt-[6px] mb-[4px] text-textColor font-semibold">
           {item.title}
         </p>
         <p className="text-xs xs:text-sm truncate">{item.description}</p>

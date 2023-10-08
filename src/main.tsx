@@ -9,6 +9,7 @@ import { store } from "./store/store.ts";
 import { Provider } from "react-redux";
 import ItemPage from "./pages/ItemPage.tsx";
 import Error from "./components/Error.tsx";
+import SearchPage from "./pages/SearchPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       },
     ],
     errorElement: <Error />,
+  },
+  {
+    path: "/search",
+    element: <SearchPage />,
   },
 ]);
 

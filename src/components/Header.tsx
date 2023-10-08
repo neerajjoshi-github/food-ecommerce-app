@@ -2,7 +2,7 @@ import { useState } from "react";
 import { BsBag } from "react-icons/bs";
 import { BiMenuAltLeft, BiSolidUserCircle } from "react-icons/bi";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signInWithPopup, getAuth, GoogleAuthProvider } from "firebase/auth";
 import { app } from "../../firebase.config.ts";
 import { useSelector, useDispatch } from "react-redux";
@@ -14,6 +14,8 @@ import { toggleIsCartOpen } from "../store/slices/cartSlice.ts";
 import { NavHashLink } from "react-router-hash-link";
 import Button from "./reusables/Button.tsx";
 import { GiHamburgerMenu } from "react-icons/gi";
+import Search from "./Search.tsx";
+import { BsSearch } from "react-icons/bs";
 
 const firebaseAuth = getAuth(app);
 const provider = new GoogleAuthProvider();
@@ -43,8 +45,10 @@ const Header = () => {
   const numOfCartItems = useSelector(
     (state: RootState) => state.cart.numOfCartItems
   );
+  const navigate = useNavigate();
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   const login = async () => {
     try {
       const {
@@ -69,14 +73,15 @@ const Header = () => {
 
   return (
     <header className="fixed top-0 left-0 z-50 w-full bg-primaryBg/60 border-b-2 border-gray-400 backdrop-blur-md">
-      <div className="flex px-2 py-4 xs:p-4 md:px-16 md:py-6">
+      <div className="flex px-2 py-4 xs:p-4  md:py-6 items-center">
         <Button
           variant="ghost"
-          className="flex md:hidden py-1 px-2 mx-1 rounded-md hover:bg-slate-400"
+          className="flex xl:hidden py-1 px-2 mx-1 rounded-md hover:bg-gray-200"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           <GiHamburgerMenu size={20} />
         </Button>
+
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
@@ -92,9 +97,9 @@ const Header = () => {
                 scale: 0.6,
                 opacity: 0,
               }}
-              className="absolute left-2 md:-left-8 top-20 flex flex-col w-40 bg-primaryBg border-gray-600 border rounded-lg shadow-xl py-2"
+              className="absolute left-2 xl:-left-8 top-20 flex flex-col w-40 bg-primaryBg border-gray-600 border rounded-lg shadow-xl py-2"
             >
-              <ul className="flex md:hidden flex-col items-center">
+              <ul className="flex xl:hidden flex-col items-center">
                 {navLinks.map((link) => {
                   return (
                     <li
@@ -110,16 +115,19 @@ const Header = () => {
             </motion.div>
           )}
         </AnimatePresence>
+
         <Link to="/" className="flex items-center gap-2">
           <img
             src="/images/logo.png"
             className="w-7 md:w-10 object-cover"
             alt="Logo Image"
           />
-          <p className="hidden xxs:flex text-headingColor text-xl font-bold">
+          <p className="hidden sm:flex text-headingColor text-xl font-bold">
             Fruitsify
           </p>
         </Link>
+        <Search className="max-md:hidden" />
+
         <div className="ml-auto flex items-center gap-4 sm:gap-8">
           <motion.ul
             initial={{
@@ -130,7 +138,7 @@ const Header = () => {
               x: 0,
               opacity: 1,
             }}
-            className="hidden md:flex  items-center gap-8"
+            className="hidden xl:flex  items-center gap-8"
           >
             {navLinks.map((link) => {
               return (
@@ -143,6 +151,13 @@ const Header = () => {
               );
             })}
           </motion.ul>
+          <div
+            onClick={() => navigate("/search")}
+            title="search"
+            className="md:hidden"
+          >
+            <BsSearch className="cursor-pointer text-xl mt-1 text-textColor" />
+          </div>
           <div
             onClick={() => dispatch(toggleIsCartOpen())}
             className="relative flex items-center justify-center"
@@ -191,7 +206,7 @@ const Header = () => {
                         scale: 0.6,
                         opacity: 0,
                       }}
-                      className="absolute right-0 md:-right-8 top-16 flex flex-col w-40 bg-primaryBg border-gray-600 border rounded-lg shadow-xl py-2"
+                      className="absolute right-0 lg:-right-8 top-16 flex flex-col w-40 bg-primaryBg border-gray-600 border rounded-lg shadow-xl py-2"
                     >
                       <div className="cursor-pointer flex justify-between px-6 py-2 gap-2 items-center hover:bg-primary hover:text-white transition">
                         <p>Account</p>

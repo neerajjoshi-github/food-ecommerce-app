@@ -49,8 +49,8 @@ const ItemPage = () => {
   return (
     <div className="container-padding">
       {loading ? (
-        <div className="flex gap-4 bg-cardOverlay shadow-lg p-4">
-          <Skeleton className="w-[400px] h-[400px]" />
+        <div className="flex flex-col lg:flex-row gap-4 bg-cardOverlay shadow-lg p-4">
+          <Skeleton className="w-full max-w-[400px] h-[250px] lg:w-[400px] lg:h-[400px]" />
           <div className="p-2 flex w-full flex-col gap-2">
             <Skeleton className="w-full h-8" />
             <Skeleton className="w-full h-8" />

@@ -47,3 +47,18 @@ export const getItemWithId = async (id: string) => {
     };
   }
 };
+
+export const searchItemWithTitle = async (title: string) => {
+  const foodItemsRef = collection(firestore, "foodItems");
+  const q = query(
+    foodItemsRef,
+    where("title", ">=", title.toLowerCase()),
+    where("title", "<", title.toLowerCase() + "\uf8ff")
+  );
+  const querySnapshot = await getDocs(q);
+  const searchedItems = querySnapshot.docs.map((doc) => {
+    return { ...doc.data(), databaseId: doc.id } as Item;
+  });
+
+  return searchedItems;
+};

@@ -78,10 +78,10 @@ const ServicesContainer = () => {
       </div>
 
       <div className="grid grid-cols-2 gap-2 sm:gap-4">
-        {servicesData.map((data, index) => {
+        {servicesData.map((data) => {
           return (
             <ServiceCard
-              key={index}
+              key={data.id}
               title={data.title}
               description={data.description}
               image={data.image}

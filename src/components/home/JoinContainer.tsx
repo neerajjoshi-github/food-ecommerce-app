@@ -1,9 +1,10 @@
 import Lottie from "lottie-react";
 import FlowerAnimation from "../../assets/lotti-animation/white-flower.json";
+import { motion } from "framer-motion";
 
 const JoinContainer = () => {
   return (
-    <div className="overflow-hidden mt-6 sky-gradient flex items-center justify-start relative h-screen w-full">
+    <motion.div className="sky-gradient overflow-hidden mt-6 flex items-center justify-start relative h-screen w-full">
       <Lottie
         className="absolute -top-[430px] -left-[100px] w-[180%] h-[180%]"
         animationData={FlowerAnimation}
@@ -20,7 +21,7 @@ const JoinContainer = () => {
           celebration of flavor, sustainability, and well-being.
         </p>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

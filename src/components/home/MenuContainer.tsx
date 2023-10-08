@@ -5,6 +5,9 @@ import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import ItemCard from "../reusables/ItemCard";
+import Lottie from "lottie-react";
+import OutOfStock from "../../../src/assets/lotti-animation/out-of-stock.json";
+
 const MenuContainer = () => {
   const items = useSelector((state: RootState) => state.items.items);
   const [inputCategory, setInputCategory] = useState<string>(categories[0]);
@@ -59,13 +62,12 @@ const MenuContainer = () => {
           ))}
         </div>
       ) : (
-        <div className="flex flex-col items-center justify-center">
-          <img
-            className="h-80"
-            src="/images/not-found.svg"
-            alt="Not found image!"
-          />
-          <p className="text-2xl mt-4 font-semibold">No Result Found.....</p>
+        <div className="flex flex-col items-center justify-center ">
+          <img className="h-80" src="/images/2.png" alt="Not found image!" />
+
+          <p className="text-2xl mt-4 font-semibold">
+            Looks like we're out of stock. Check out our other tasty offerings!
+          </p>
         </div>
       )}
     </section>
