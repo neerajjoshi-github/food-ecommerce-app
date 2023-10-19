@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Input from "../reusables/Input";
 import Cards from "react-credit-cards-2";
 import { BsCreditCard2Back, BsCalendarDate } from "react-icons/bs";
