@@ -63,9 +63,13 @@ const MenuContainer = () => {
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center ">
-          <img className="h-80" src="/images/2.png" alt="Not found image!" />
+          <img
+            className="h-40 sm:h-60"
+            src="/images/2.png"
+            alt="Not found image!"
+          />
 
-          <p className="text-2xl mt-4 font-semibold">
+          <p className="text-xl sm:text-2xl mt-4 font-semibold text-center">
             Looks like we're out of stock. Check out our other tasty offerings!
           </p>
         </div>

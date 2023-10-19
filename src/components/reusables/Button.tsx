@@ -32,17 +32,20 @@ const buttonVariants = cva(
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
   MotionProps &
-  VariantProps<typeof buttonVariants>;
+  VariantProps<typeof buttonVariants> & {
+    scale?: number;
+  };
 
 const Button: React.FC<ButtonProps> = ({
   className,
   variant,
   size,
+  scale = 0.9,
   ...props
 }) => {
   return (
     <motion.button
-      whileTap={{ scale: 0.9 }}
+      whileTap={{ scale }}
       className={cn(buttonVariants({ variant, size, className }))}
       {...props}
     />

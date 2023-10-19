@@ -17,7 +17,9 @@
     "firebase": "^10.0.0",
     "framer-motion": "^10.12.22",
     "lottie-react": "^2.4.0",
+    "payment": "^2.4.6",
     "react": "^18.2.0",
+    "react-credit-cards-2": "^1.0.1",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.45.2",
     "react-icons": "^4.10.1",
@@ -30,6 +32,7 @@
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.4",
+    "@types/payment": "^2.1.4",
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
     "@types/react-router-hash-link": "^2.4.6",

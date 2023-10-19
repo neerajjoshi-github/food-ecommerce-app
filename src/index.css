@@ -84,3 +84,22 @@ body {
     -webkit-filter: hue-rotate(-360deg);
   }
 }
+
+table {
+  table-layout: auto;
+  width: 100%;
+}
+
+table tr td {
+  vertical-align: text-top;
+}
+
+table tr td:nth-child(1) {
+  font-weight: 600;
+  text-wrap: nowrap;
+}
+
+table tr td:nth-child(2) {
+  padding-left: 10px;
+  padding-right: 10px;
+}

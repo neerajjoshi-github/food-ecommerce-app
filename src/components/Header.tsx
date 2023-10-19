@@ -206,7 +206,7 @@ const Header = () => {
                         scale: 0.6,
                         opacity: 0,
                       }}
-                      className="absolute right-0 lg:-right-8 top-16 flex flex-col w-40 bg-primaryBg border-gray-600 border rounded-lg shadow-xl py-2"
+                      className="absolute right-0 top-16 flex flex-col w-40 bg-primaryBg border-gray-600 border rounded-lg shadow-xl py-2"
                     >
                       <div className="cursor-pointer flex justify-between px-6 py-2 gap-2 items-center hover:bg-primary hover:text-white transition">
                         <p>Account</p>

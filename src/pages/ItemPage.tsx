@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getItemWithId } from "../utils/firebaseFunctions";
 import { Item } from "../store/slices/itemsSlice";
 import { AiFillTag } from "react-icons/ai";
@@ -20,7 +20,6 @@ const ItemPage = () => {
   useEffect(() => {
     const fetchItem = async () => {
       const { item, similarItems } = await getItemWithId(params.itemId);
-      console.log("Item : ", item, "Simalar items", similarItems);
       setItem(item);
       const simillarItemsWithoutCurrentItem = similarItems?.filter(
         (similarItem) => similarItem.id !== item.id
@@ -32,6 +31,7 @@ const ItemPage = () => {
     fetchItem();
   }, [params]);
 
+  const navigate = useNavigate();
   const cartItems = useSelector((state: RootState) => state.cart.cartItems);
   const dispath = useDispatch();
   const isCartItem =
@@ -85,7 +85,7 @@ const ItemPage = () => {
                 </Button>
                 <Button
                   variant="secondary"
-                  disabled
+                  onClick={() => navigate(`/checkout/${item.databaseId}`)}
                   className="text-base xs:text-lg sm:text-xl md:text-2xl  uppercase"
                 >
                   <BsFillLightningChargeFill />
@@ -94,7 +94,7 @@ const ItemPage = () => {
               </div>
             </div>
             <div className="p-4 flex flex-col gap-2">
-              <span className="text-3xl md:text-5xl sm:text-6xl font-semibold text-headingColor">
+              <span className="capitalize text-3xl md:text-5xl sm:text-6xl font-semibold text-headingColor">
                 {item.title}
               </span>
               <p className="text-sm sm:text-lg">-{item.description}</p>

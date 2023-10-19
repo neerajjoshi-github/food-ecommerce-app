@@ -1,14 +1,30 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import Button from "../reusables/Button";
+import clsx from "clsx";
+import { useNavigate } from "react-router-dom";
 
-const CartTotal = () => {
+type CartTotalProps = {
+  className?: string;
+  removeProceedBtn?: boolean;
+};
+
+const CartTotal: React.FC<CartTotalProps> = ({
+  className,
+  removeProceedBtn = false,
+}) => {
+  const navigate = useNavigate();
   const totalPrice = useSelector((state: RootState) => state.cart.cartTotal);
   const numOfCartItems = useSelector(
     (state: RootState) => state.cart.numOfCartItems
   );
   return (
-    <div className="absolute bottom-0 w-full bg-[#e8eaed] p-2 border-white border-t-4">
+    <div
+      className={clsx(
+        `w-full bg-[#e8eaed] p-2 border-white border-t-4`,
+        className
+      )}
+    >
       <h4 className="text-headingColor border-primary border-b py-2 text-sm">
         PRICE DETAILS
       </h4>
@@ -28,9 +44,11 @@ const CartTotal = () => {
         <p className="text-lg font-semibold">Total</p>
         <p className="text-lg font-semibold">$ {totalPrice}</p>
       </div>
-      <Button disabled className="w-full">
-        Proceed
-      </Button>
+      {!removeProceedBtn && (
+        <Button onClick={() => navigate("/checkout")} className="w-full">
+          Proceed
+        </Button>
+      )}
     </div>
   );
 };

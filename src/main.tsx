@@ -1,6 +1,6 @@
+import "./index.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App.tsx";
 import HomePage from "./pages/HomePage.tsx";
@@ -10,6 +10,8 @@ import { Provider } from "react-redux";
 import ItemPage from "./pages/ItemPage.tsx";
 import Error from "./components/Error.tsx";
 import SearchPage from "./pages/SearchPage.tsx";
+import CheckoutPage from "./pages/CheckoutPage.tsx";
+import ItemCheckout from "./pages/ItemCheckout.tsx";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +27,14 @@ const router = createBrowserRouter([
         element: <AddItemPage />,
       },
       {
+        path: "/checkout",
+        element: <CheckoutPage />,
+      },
+      {
+        path: "/checkout/:itemId",
+        element: <ItemCheckout />,
+      },
+      {
         path: "/item/:itemId",
         element: <ItemPage />,
       },
@@ -34,6 +44,7 @@ const router = createBrowserRouter([
   {
     path: "/search",
     element: <SearchPage />,
+    errorElement: <Error />,
   },
 ]);
 

@@ -153,7 +153,6 @@ const AddItemPage = () => {
                   <input
                     onBlur={onBlur}
                     onChange={(e) => {
-                      console.log("image uploaded");
                       getImageUrl(e.target.files, onChange);
                     }}
                     type="file"
@@ -253,5 +252,3 @@ const AddItemPage = () => {
 };
 
 export default AddItemPage;
-
-// title, calories,price,category,imageAsset,fileds,alertStatus,msg,isLoading

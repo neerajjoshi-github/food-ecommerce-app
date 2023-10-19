@@ -28,7 +28,7 @@ export const getItemWithId = async (id: string) => {
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
-    const item = docSnap.data() as Item;
+    const item = { ...docSnap.data(), databaseId: docSnap.id } as Item;
     const itemsRef = collection(firestore, "foodItems");
     const q = query(itemsRef, where("category", "==", item.category));
     const querySnapshot = await getDocs(q);

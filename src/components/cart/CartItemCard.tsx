@@ -3,6 +3,7 @@ import { CartItem } from "../../store/slices/cartSlice";
 import { removeFromCart, updateQuantity } from "../../store/slices/cartSlice";
 import { useDispatch } from "react-redux";
 import Button from "../reusables/Button";
+import { useNavigate } from "react-router-dom";
 
 const quantityOption = [
   { value: "1", label: "1" },
@@ -14,13 +15,18 @@ const quantityOption = [
 
 interface CartItemProps {
   cartItem: CartItem;
+  removeBuyNowBtn?: boolean;
 }
 
-const CartItemCard = ({ cartItem }: CartItemProps) => {
+const CartItemCard = ({ cartItem, removeBuyNowBtn = false }: CartItemProps) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   return (
     <div className="flex flex-col px-2 bg-white rounded-md">
-      <div className="flex items-center gap-4 ">
+      <div
+        onClick={() => navigate(`/item/${cartItem.databaseId}`)}
+        className="flex items-center gap-4 cursor-pointer"
+      >
         <div className="w-24 h-24">
           <img
             className="w-full h-full object-contain"
@@ -29,17 +35,21 @@ const CartItemCard = ({ cartItem }: CartItemProps) => {
           />
         </div>
         <div>
-          <p className="text-headingColor text-lg">{cartItem.title}</p>
+          <span className="text-headingColor text-lg capitalize relative group">
+            {cartItem.title}
+            <span className="absolute bottom-0 left-0 w-0 h-[2px] group-hover:w-full bg-black transition-all duration-300"></span>
+          </span>
           <p className="text-sm truncate">{cartItem.description}</p>
           <p>
             $ <span>{cartItem.price}</span>
           </p>
         </div>
       </div>
-      <div className="grid grid-cols-3 gap-2 border-t border-primary py-2">
+      <div className="flex items-center gap-2 border-t border-primary py-2">
         <Button
           variant="muted"
           onClick={() => dispatch(removeFromCart(cartItem.id))}
+          className="flex-1"
         >
           Remove
         </Button>
@@ -64,10 +74,19 @@ const CartItemCard = ({ cartItem }: CartItemProps) => {
             },
           })}
           placeholder="qty"
-          defaultValue={quantityOption[0]}
+          defaultValue={{ value: cartItem.qty, label: cartItem.qty }}
+          className="flex-1"
+          value={{ value: cartItem.qty, label: cartItem.qty }}
         />
 
-        <Button disabled>Buy Now</Button>
+        {!removeBuyNowBtn && (
+          <Button
+            onClick={() => navigate(`/checkout/${cartItem.databaseId}`)}
+            className="flex-1"
+          >
+            Buy Now
+          </Button>
+        )}
       </div>
     </div>
   );
