@@ -1,3 +1,4 @@
+// TODO Auth for checkou -> buy now || proceed
 import React, { useState } from "react";
 import Input from "../reusables/Input";
 import Cards from "react-credit-cards-2";
